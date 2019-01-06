@@ -1,26 +1,24 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 export const FormItem = ({ label, type = 'text', ...otherProps }) => (
   <div>
     {type === 'text' ? (
-      <React.Fragment>
-        <label>
-          {label}
-          <input type={type} {...otherProps} />
-        </label>
-      </React.Fragment>
+      <Fragment>
+        <label>{label}</label>
+        <input type={type} {...otherProps} />
+      </Fragment>
     ) : (
-      <React.Fragment>
+      <Fragment>
         <label />
         <input type={type} {...otherProps} />
         {label}
-      </React.Fragment>
+      </Fragment>
     )}
   </div>
 );
 
 export const Dropdown = ({ options, label, ...others }) => (
-  <React.Fragment>
+  <Fragment>
     <label>{label}</label>
     <select {...others}>
       {options.map(([value, name]) => (
@@ -29,5 +27,5 @@ export const Dropdown = ({ options, label, ...others }) => (
         </option>
       ))}
     </select>
-  </React.Fragment>
+  </Fragment>
 );
