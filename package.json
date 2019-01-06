@@ -1,0 +1,26 @@
+{
+  "name": "multi-step-form-using-usestep-alpha3-rhh-demo",
+  "version": "1.0.0",
+  "description": "Demo code for md in npm package \"react-hooks-helper\"",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "react": "next",
+    "react-dom": "next",
+    "react-hooks-helper": "next",
+    "react-scripts": "2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
