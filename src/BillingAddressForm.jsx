@@ -33,9 +33,13 @@ const BillingAddressForm = ({ setForm, formData, navigation }) => {
 
       <div className="navigation">
         {isReviewMode ? (
-          <button onClick={() => go('review')}>Review Order</button>
+          <button type="button" onClick={() => go('review')}>
+            Review Order
+          </button>
         ) : (
-          <button onClick={next}>Next</button>
+          <button type="button" onClick={next}>
+            Next
+          </button>
         )}
       </div>
     </div>

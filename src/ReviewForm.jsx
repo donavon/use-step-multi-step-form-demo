@@ -2,7 +2,7 @@ import React from 'react';
 
 import shippingMethods from './shippingMethods';
 
-const ReviewForm = ({ setForm, formData, navigation }) => {
+const ReviewForm = ({ formData, navigation }) => {
   const {
     billingFirstName,
     billingLastName,
@@ -27,7 +27,11 @@ const ReviewForm = ({ setForm, formData, navigation }) => {
 
       <h3>
         Billing Address
-        <button className="small" onClick={() => go('billing-address')}>
+        <button
+          type="button"
+          className="small"
+          onClick={() => go('billing-address')}
+        >
           edit
         </button>
       </h3>
@@ -36,35 +40,45 @@ const ReviewForm = ({ setForm, formData, navigation }) => {
       <div>{`${billingCity}, ${billingState} ${billingZip}`}</div>
 
       <h3>
-        Shippping Address
-        <button className="small" onClick={() => go('shipping-address')}>
+        Shipping Address
+        <button
+          type="button"
+          className="small"
+          onClick={() => go('shipping-address')}
+        >
           edit
         </button>
       </h3>
       {shippingSameAsBilling ? (
-        <>
+        <React.Fragment>
           <div>{`${billingFirstName} ${billingLastName}`}</div>
           <div>{billingAddress}</div>
           <div>{`${billingCity}, ${billingState} ${billingZip}`}</div>
-        </>
+        </React.Fragment>
       ) : (
-        <>
+        <React.Fragment>
           <div>{`${shippingFirstName} ${shippingLastName}`}</div>
           <div>{shippingAddress}</div>
           <div>{`${shippingCity}, ${shippingState} ${shippingZip}`}</div>
-        </>
+        </React.Fragment>
       )}
 
       <h3>
         Shipping Method
-        <button className="small" onClick={() => go('shipping-method')}>
+        <button
+          type="button"
+          className="small"
+          onClick={() => go('shipping-method')}
+        >
           edit
         </button>
       </h3>
       <div>{`${shippingMethods[shippingMethod]}`}</div>
 
       <div className="navigation">
-        <button onClick={() => go('confirmation')}>Submit Order</button>
+        <button type="button" onClick={() => go('confirmation')}>
+          Submit Order
+        </button>
       </div>
     </div>
   );

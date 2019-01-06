@@ -1,17 +1,24 @@
 {
-  "name": "multi-step-form-using-usestep-alpha3-rhh-demo",
+  "name": "use-step-multi-step-form-demo",
   "version": "1.0.0",
   "description": "Demo code for md in npm package \"react-hooks-helper\"",
   "keywords": [],
   "main": "src/index.js",
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-amex": "^9.0.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.15.3"
+  },
   "dependencies": {
     "react": "next",
     "react-dom": "next",
     "react-hooks-helper": "next",
-    "react-scripts": "2.0.3"
+    "react-scripts": "^2.1.3"
   },
-  "devDependencies": {},
   "scripts": {
+    "lint": "eslint src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

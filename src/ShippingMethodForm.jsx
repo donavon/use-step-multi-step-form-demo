@@ -27,12 +27,18 @@ const ShippingMethodForm = ({ setForm, formData, navigation }) => {
 
       <div className="navigation">
         {isReviewMode ? (
-          <button onClick={() => go('review')}>Review Order</button>
+          <button type="button" onClick={() => go('review')}>
+            Review Order
+          </button>
         ) : (
-          <>
-            <button onClick={previous}>Prev</button>
-            <button onClick={next}>Next</button>
-          </>
+          <React.Fragment>
+            <button type="button" onClick={previous}>
+              Prev
+            </button>
+            <button type="button" onClick={next}>
+              Next
+            </button>
+          </React.Fragment>
         )}
       </div>
     </div>

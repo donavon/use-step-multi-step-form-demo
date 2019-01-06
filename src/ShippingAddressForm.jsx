@@ -5,21 +5,7 @@ import StatesDropdown from './StatesDropdown';
 import AppContext from './AppContext';
 
 const ShippingAddressForm = ({ setForm, formData, navigation }) => {
-  const {
-    billingFirstName,
-    billingLastName,
-    billingAddress,
-    billingCity,
-    billingState,
-    billingZip,
-    shippingSameAsBilling,
-    shippingFirstName,
-    shippingLastName,
-    shippingAddress,
-    shippingCity,
-    shippingState,
-    shippingZip,
-  } = formData;
+  const { shippingSameAsBilling } = formData;
   const { previous, next, go } = navigation;
   const { isReviewMode } = useContext(AppContext);
 
@@ -73,12 +59,18 @@ const ShippingAddressForm = ({ setForm, formData, navigation }) => {
 
       <div className="navigation">
         {isReviewMode ? (
-          <button onClick={() => go('review')}>Review Order</button>
+          <button type="button" onClick={() => go('review')}>
+            Review Order
+          </button>
         ) : (
-          <>
-            <button onClick={previous}>Prev</button>
-            <button onClick={next}>Next</button>
-          </>
+          <React.Fragment>
+            <button type="button" onClick={previous}>
+              Prev
+            </button>
+            <button type="button" onClick={next}>
+              Next
+            </button>
+          </React.Fragment>
         )}
       </div>
     </div>
