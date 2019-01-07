@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm, useStep } from 'react-hooks-helper';
 
-import AppContext from './AppContext';
 import BillingAddressForm from './BillingAddressForm';
 import ShippingAddressForm from './ShippingAddressForm';
 import ShippingMethodForm from './ShippingMethodForm';
@@ -34,31 +33,27 @@ const defaultData = {
   shippingMethod: 'FREE',
 };
 
+const mapIdToComponent = {
+  'billing-address': BillingAddressForm,
+  'shipping-address': ShippingAddressForm,
+  'shipping-method': ShippingMethodForm,
+  'set-review': ReviewForm,
+  review: ReviewForm,
+  confirmation: ConfirmationForm,
+};
+
 const MultiStepForm = () => {
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
 
   const props = { formData, setForm, navigation };
-  const appContext = useContext(AppContext);
 
-  switch (id) {
-    case 'billing-address':
-      return <BillingAddressForm {...props} />;
-    case 'shipping-address':
-      return <ShippingAddressForm {...props} />;
-    case 'shipping-method':
-      return <ShippingMethodForm {...props} />;
-    case 'set-review':
-      appContext.isReviewMode = true;
-      return <ReviewForm {...props} />;
-    case 'review':
-      return <ReviewForm {...props} />;
-    case 'confirmation':
-      return <ConfirmationForm {...props} />;
-    default:
-      throw new Error(`Invalid step id: "${id}"`);
+  const Component = mapIdToComponent[id];
+  if (!Component) {
+    throw new Error(`Invalid step id: "${id}"`);
   }
+  return <Component {...props} />;
 };
 
 export default MultiStepForm;

@@ -60,7 +60,7 @@ const ShippingAddressForm = ({ setForm, formData, navigation }) => {
         />
       ))}
 
-      <div class="w3-bar">
+      <div className="w3-bar">
         {isReviewMode ? (
           <button
             className="w3-button w3-dark-grey w3-border w3-right"

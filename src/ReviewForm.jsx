@@ -76,7 +76,7 @@ const ReviewForm = ({ formData, navigation }) => {
         <div>{`${shippingMethods[shippingMethod]}`}</div>
       </ReviewSection>
 
-      <div class="w3-bar">
+      <div className="w3-bar">
         <button
           className="w3-button w3-blue w3-border w3-right"
           type="button"

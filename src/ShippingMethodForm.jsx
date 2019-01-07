@@ -7,7 +7,9 @@ import AppContext from './AppContext';
 const ShippingMethodForm = ({ setForm, formData, navigation }) => {
   const { shippingMethod } = formData;
   const { previous, next, go } = navigation;
-  const { isReviewMode } = useContext(AppContext);
+
+  const appContext = useContext(AppContext);
+  const { isReviewMode } = appContext;
 
   return (
     <div className="form">
@@ -25,7 +27,7 @@ const ShippingMethodForm = ({ setForm, formData, navigation }) => {
         />
       ))}
 
-      <div class="w3-bar">
+      <div className="w3-bar">
         {isReviewMode ? (
           <button
             className="w3-button w3-dark-grey w3-border w3-right"
@@ -46,7 +48,10 @@ const ShippingMethodForm = ({ setForm, formData, navigation }) => {
             <button
               className="w3-button w3-white w3-border w3-right"
               type="button"
-              onClick={next}
+              onClick={() => {
+                appContext.isReviewMode = true;
+                next();
+              }}
             >
               Review Order ›
             </button>
