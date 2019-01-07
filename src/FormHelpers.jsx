@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-export const FormItem = ({ label, type = "text", ...otherProps }) => (
+export const FormItem = ({ label, type = 'text', ...otherProps }) => (
   <div>
-    {type === "text" ? (
+    {type === 'text' ? (
       <>
         <label>{label}</label>
         <input type={type} {...otherProps} />
