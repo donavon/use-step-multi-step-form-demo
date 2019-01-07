@@ -11,12 +11,6 @@ const ShippingAddressForm = ({ setForm, formData, navigation }) => {
 
   const fields = [
     {
-      label: 'Same as Billing',
-      name: 'shippingSameAsBilling',
-      checked: shippingSameAsBilling,
-      type: 'checkbox',
-    },
-    {
       label: 'First Name',
       name: shippingSameAsBilling ? 'billingFirstName' : 'shippingFirstName',
     },
@@ -45,32 +39,53 @@ const ShippingAddressForm = ({ setForm, formData, navigation }) => {
 
   return (
     <div className="form">
-      <h2>Shipping Address</h2>
+      <h3>Shipping Address</h3>
+
+      <FormItem
+        label="Same as Billing"
+        name="shippingSameAsBilling"
+        checked={shippingSameAsBilling}
+        type="checkbox"
+        onChange={setForm}
+      />
 
       {fields.map(({ Component = FormItem, name, ...props }) => (
         <Component
           key={name}
           name={name}
           value={formData[name]}
+          disabled={shippingSameAsBilling}
           {...props}
           onChange={setForm}
         />
       ))}
 
-      <div className="navigation">
+      <div class="w3-bar">
         {isReviewMode ? (
-          <button type="button" onClick={() => go('review')}>
+          <button
+            className="w3-button w3-dark-grey w3-border w3-right"
+            type="button"
+            onClick={() => go('review')}
+          >
             Review Order
           </button>
         ) : (
-          <React.Fragment>
-            <button type="button" onClick={previous}>
-              Prev
+          <>
+            <button
+              className="w3-button w3-white w3-border w3-left"
+              type="button"
+              onClick={previous}
+            >
+              ‹ Billing Address
             </button>
-            <button type="button" onClick={next}>
-              Next
+            <button
+              className="w3-button w3-white w3-border w3-right"
+              type="button"
+              onClick={next}
+            >
+              Shipping Method ›
             </button>
-          </React.Fragment>
+          </>
         )}
       </div>
     </div>

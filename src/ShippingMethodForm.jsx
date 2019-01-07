@@ -11,7 +11,7 @@ const ShippingMethodForm = ({ setForm, formData, navigation }) => {
 
   return (
     <div className="form">
-      <h2>Shipping Method</h2>
+      <h3>Shipping Method</h3>
 
       {Object.entries(shippingMethods).map(([value, name]) => (
         <FormItem
@@ -25,20 +25,32 @@ const ShippingMethodForm = ({ setForm, formData, navigation }) => {
         />
       ))}
 
-      <div className="navigation">
+      <div class="w3-bar">
         {isReviewMode ? (
-          <button type="button" onClick={() => go('review')}>
+          <button
+            className="w3-button w3-dark-grey w3-border w3-right"
+            type="button"
+            onClick={() => go('review')}
+          >
             Review Order
           </button>
         ) : (
-          <React.Fragment>
-            <button type="button" onClick={previous}>
-              Prev
+          <>
+            <button
+              className="w3-button w3-white w3-border w3-left"
+              type="button"
+              onClick={previous}
+            >
+              ‹ Shipping Address
             </button>
-            <button type="button" onClick={next}>
-              Next
+            <button
+              className="w3-button w3-white w3-border w3-right"
+              type="button"
+              onClick={next}
+            >
+              Review Order ›
             </button>
-          </React.Fragment>
+          </>
         )}
       </div>
     </div>

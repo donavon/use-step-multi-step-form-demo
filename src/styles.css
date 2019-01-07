@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: rgb(198, 250, 198);
   text-align: center;
 }
@@ -88,4 +88,22 @@ body {
 
 .form input:disabled {
   background-color: #eee;
+} */
+
+.app {
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+h4 button {
+  margin-left: 10px;
+}
+
+select {
+  background-color: transparent;
+  margin: 10px 0;
+}
+
+.w3-bar {
+  margin-top: 32px;
 }

@@ -19,7 +19,7 @@ const BillingAddressForm = ({ setForm, formData, navigation }) => {
 
   return (
     <div className="form">
-      <h2>Billing Address</h2>
+      <h3>Billing Address</h3>
 
       {fields.map(({ Component = FormItem, name, ...props }) => (
         <Component
@@ -31,14 +31,22 @@ const BillingAddressForm = ({ setForm, formData, navigation }) => {
         />
       ))}
 
-      <div className="navigation">
+      <div class="w3-bar">
         {isReviewMode ? (
-          <button type="button" onClick={() => go('review')}>
+          <button
+            className="w3-button w3-dark-grey w3-border w3-right"
+            type="button"
+            onClick={() => go('review')}
+          >
             Review Order
           </button>
         ) : (
-          <button type="button" onClick={next}>
-            Next
+          <button
+            className="w3-button w3-white w3-border w3-right"
+            type="button"
+            onClick={next}
+          >
+            Shipping Address ›
           </button>
         )}
       </div>

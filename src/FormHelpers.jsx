@@ -3,29 +3,38 @@ import React from 'react';
 export const FormItem = ({ label, type = 'text', ...otherProps }) => (
   <div>
     {type === 'text' ? (
-      <>
-        <label>{label}</label>
-        <input type={type} {...otherProps} />
-      </>
+      <p>
+        <label>
+          {label}
+          <input className="w3-input" type={type} {...otherProps} />
+        </label>
+      </p>
     ) : (
-      <>
-        <label />
-        <input type={type} {...otherProps} />
-        {label}
-      </>
+      <p>
+        <label>
+          <input
+            className={type === 'checkbox' ? 'w3-check' : 'w3-radio'}
+            type={type}
+            {...otherProps}
+          />
+          {label}
+        </label>
+      </p>
     )}
   </div>
 );
 
 export const Dropdown = ({ options, label, ...others }) => (
-  <>
-    <label>{label}</label>
-    <select {...others}>
-      {options.map(([value, name]) => (
-        <option key={value} value={value}>
-          {name}
-        </option>
-      ))}
-    </select>
-  </>
+  <p>
+    <label>
+      {label}
+      <select className="w3-select" {...others}>
+        {options.map(([value, name]) => (
+          <option key={value} value={value}>
+            {name}
+          </option>
+        ))}
+      </select>
+    </label>
+  </p>
 );
