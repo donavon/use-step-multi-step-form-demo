@@ -2,14 +2,14 @@ import React from 'react';
 
 import shippingMethods from './shippingMethods';
 
-const ReviewSection = ({ title, children, onClick }) => (
+const createReviewSection = go => ({ id, title, children }) => (
   <>
     <h4>
       {title}
       <button
         type="button"
         className="w3-button w3-small w3-padding-small w3-border w3-white"
-        onClick={onClick}
+        onClick={() => go(id)}
       >
         edit
       </button>
@@ -36,24 +36,19 @@ const ReviewForm = ({ formData, navigation }) => {
     shippingZip,
   } = formData;
   const { go } = navigation;
+  const ReviewSection = createReviewSection(go);
 
   return (
     <div className="form">
       <h3>Order Review</h3>
 
-      <ReviewSection
-        title="Billing Address"
-        onClick={() => go('billing-address')}
-      >
+      <ReviewSection title="Billing Address" id="billing-address">
         <div>{`${billingFirstName} ${billingLastName}`}</div>
         <div>{billingAddress}</div>
         <div>{`${billingCity}, ${billingState} ${billingZip}`}</div>
       </ReviewSection>
 
-      <ReviewSection
-        title="Shipping Address"
-        onClick={() => go('shipping-address')}
-      >
+      <ReviewSection title="Shipping Address" id="shipping-address">
         {shippingSameAsBilling ? (
           <React.Fragment>
             <div>{`${billingFirstName} ${billingLastName}`}</div>
@@ -69,10 +64,7 @@ const ReviewForm = ({ formData, navigation }) => {
         )}
       </ReviewSection>
 
-      <ReviewSection
-        title="Shipping Method"
-        onClick={() => go('shipping-method')}
-      >
+      <ReviewSection title="Shipping Method" id="shipping-method">
         <div>{`${shippingMethods[shippingMethod]}`}</div>
       </ReviewSection>
 
