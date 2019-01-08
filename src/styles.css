@@ -18,3 +18,10 @@ h4 button {
 .w3-bar {
   margin-top: 32px;
 }
+
+/* standardize: brave mobile uses these, chrome web doesn't set background color */
+.w3-select:disabled,
+.w3-input:disabled {
+  color: #545454;
+  background-color: #ebebe5;
+}
