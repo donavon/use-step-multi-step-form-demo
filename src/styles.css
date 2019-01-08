@@ -1,15 +1,16 @@
 .app {
   max-width: 500px;
-  margin: 20px auto;
+  margin: 15px auto;
 }
 
 h4 button {
   margin-left: 10px;
 }
 
-select {
+.w3-select {
   background-color: transparent;
-  margin: 16px 0;
+  appearance: none;
+  padding: 8px 0;
 }
 
 .w3-bar {
