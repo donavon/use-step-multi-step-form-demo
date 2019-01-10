@@ -50,17 +50,17 @@ const ReviewForm = ({ formData, navigation }) => {
 
       <ReviewSection title="Shipping Address" id="shipping-address">
         {shippingSameAsBilling ? (
-          <React.Fragment>
+          <>
             <div>{`${billingFirstName} ${billingLastName}`}</div>
             <div>{billingAddress}</div>
             <div>{`${billingCity}, ${billingState} ${billingZip}`}</div>
-          </React.Fragment>
+          </>
         ) : (
-          <React.Fragment>
+          <>
             <div>{`${shippingFirstName} ${shippingLastName}`}</div>
             <div>{shippingAddress}</div>
             <div>{`${shippingCity}, ${shippingState} ${shippingZip}`}</div>
-          </React.Fragment>
+          </>
         )}
       </ReviewSection>
 
