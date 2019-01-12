@@ -5,36 +5,17 @@ import StatesDropdown from './StatesDropdown';
 import AppContext from './AppContext';
 
 const ShippingAddressForm = ({ setForm, formData, navigation }) => {
-  const { shippingSameAsBilling } = formData;
   const { previous, next, go } = navigation;
   const { isReviewMode } = useContext(AppContext);
+  const { shippingSameAsBilling, billing, shipping } = formData;
 
   const fields = [
-    {
-      label: 'First Name',
-      name: shippingSameAsBilling ? 'billingFirstName' : 'shippingFirstName',
-    },
-    {
-      label: 'Last Name',
-      name: shippingSameAsBilling ? 'billingLastName' : 'shippingLastName',
-    },
-    {
-      label: 'Address',
-      name: shippingSameAsBilling ? 'billingAddress' : 'shippingAddress',
-    },
-    {
-      label: 'City',
-      name: shippingSameAsBilling ? 'billingCity' : 'shippingCity',
-    },
-    {
-      label: 'State',
-      name: shippingSameAsBilling ? 'billingState' : 'shippingState',
-      Component: StatesDropdown,
-    },
-    {
-      label: 'Zip',
-      name: shippingSameAsBilling ? 'billingZip' : 'shippingZip',
-    },
+    { label: 'First Name', name: 'firstName' },
+    { label: 'Last Name', name: 'lastName' },
+    { label: 'Address', name: 'address' },
+    { label: 'City', name: 'city' },
+    { label: 'State', name: 'state', Component: StatesDropdown },
+    { label: 'Zip', name: 'zip' },
   ];
 
   return (
@@ -52,8 +33,8 @@ const ShippingAddressForm = ({ setForm, formData, navigation }) => {
       {fields.map(({ Component = FormItem, name, ...props }) => (
         <Component
           key={name}
-          name={name}
-          value={formData[name]}
+          name={`${shippingSameAsBilling ? 'billing' : 'shipping'}.${name}`}
+          value={shippingSameAsBilling ? billing[name] : shipping[name]}
           disabled={shippingSameAsBilling}
           {...props}
           onChange={setForm}

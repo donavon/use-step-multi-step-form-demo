@@ -7,14 +7,15 @@ import AppContext from './AppContext';
 const BillingAddressForm = ({ setForm, formData, navigation }) => {
   const { next, go } = navigation;
   const { isReviewMode } = useContext(AppContext);
+  const { billing } = formData;
 
   const fields = [
-    { label: 'First Name', name: 'billingFirstName' },
-    { label: 'Last Name', name: 'billingLastName' },
-    { label: 'Address', name: 'billingAddress' },
-    { label: 'City', name: 'billingCity' },
-    { label: 'State', name: 'billingState', Component: StatesDropdown },
-    { label: 'Zip', name: 'billingZip' },
+    { label: 'First Name', name: 'firstName' },
+    { label: 'Last Name', name: 'lastName' },
+    { label: 'Address', name: 'address' },
+    { label: 'City', name: 'city' },
+    { label: 'State', name: 'state', Component: StatesDropdown },
+    { label: 'Zip', name: 'zip' },
   ];
 
   return (
@@ -24,8 +25,8 @@ const BillingAddressForm = ({ setForm, formData, navigation }) => {
       {fields.map(({ Component = FormItem, name, ...props }) => (
         <Component
           key={name}
-          name={name}
-          value={formData[name]}
+          name={`billing.${name}`}
+          value={billing[name]}
           {...props}
           onChange={setForm}
         />

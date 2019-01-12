@@ -18,23 +18,16 @@ const createReviewSection = go => ({ id, title, children }) => (
   </>
 );
 
+const Address = ({ firstName, lastName, address, city, state, zip }) => (
+  <>
+    <div>{`${firstName} ${lastName}`}</div>
+    <div>{address}</div>
+    <div>{`${city}, ${state} ${zip}`}</div>
+  </>
+);
+
 const ReviewForm = ({ formData, navigation }) => {
-  const {
-    billingFirstName,
-    billingLastName,
-    billingAddress,
-    billingCity,
-    billingState,
-    billingZip,
-    shippingMethod,
-    shippingSameAsBilling,
-    shippingFirstName,
-    shippingLastName,
-    shippingAddress,
-    shippingCity,
-    shippingState,
-    shippingZip,
-  } = formData;
+  const { billing, shippingMethod, shippingSameAsBilling, shipping } = formData;
   const { go } = navigation;
   const ReviewSection = createReviewSection(go);
 
@@ -43,24 +36,14 @@ const ReviewForm = ({ formData, navigation }) => {
       <h3>Order Review</h3>
 
       <ReviewSection title="Billing Address" id="billing-address">
-        <div>{`${billingFirstName} ${billingLastName}`}</div>
-        <div>{billingAddress}</div>
-        <div>{`${billingCity}, ${billingState} ${billingZip}`}</div>
+        <Address {...billing} />
       </ReviewSection>
 
       <ReviewSection title="Shipping Address" id="shipping-address">
         {shippingSameAsBilling ? (
-          <>
-            <div>{`${billingFirstName} ${billingLastName}`}</div>
-            <div>{billingAddress}</div>
-            <div>{`${billingCity}, ${billingState} ${billingZip}`}</div>
-          </>
+          <Address {...billing} />
         ) : (
-          <>
-            <div>{`${shippingFirstName} ${shippingLastName}`}</div>
-            <div>{shippingAddress}</div>
-            <div>{`${shippingCity}, ${shippingState} ${shippingZip}`}</div>
-          </>
+          <Address {...shipping} />
         )}
       </ReviewSection>
 

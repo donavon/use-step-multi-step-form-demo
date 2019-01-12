@@ -17,19 +17,23 @@ const steps = [
 ];
 
 const defaultData = {
-  billingFirstName: 'Jane',
-  billingLastName: 'Doe',
-  billingAddress: '200 South Main St',
-  billingCity: 'Anytown',
-  billingState: 'CA',
-  billingZip: '90505',
+  billing: {
+    firstName: 'Jane',
+    lastName: 'Doe',
+    address: '200 South Main St',
+    city: 'Anytown',
+    state: 'CA',
+    zip: '90505',
+  },
   shippingSameAsBilling: false,
-  shippingFirstName: 'John',
-  shippingLastName: 'Smith',
-  shippingAddress: '100 North Road Rd',
-  shippingCity: 'Othertown',
-  shippingState: 'NY',
-  shippingZip: '10101',
+  shipping: {
+    firstName: 'John',
+    lastName: 'Smith',
+    address: '100 North Road Rd',
+    city: 'Othertown',
+    state: 'NY',
+    zip: '10101',
+  },
   shippingMethod: 'FREE',
 };
 
