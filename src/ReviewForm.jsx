@@ -40,11 +40,7 @@ const ReviewForm = ({ formData, navigation }) => {
       </ReviewSection>
 
       <ReviewSection title="Shipping Address" id="shipping-address">
-        {shippingSameAsBilling ? (
-          <Address {...billing} />
-        ) : (
-          <Address {...shipping} />
-        )}
+        <Address {...(shippingSameAsBilling ? billing : shipping)} />
       </ReviewSection>
 
       <ReviewSection title="Shipping Method" id="shipping-method">
@@ -53,7 +49,7 @@ const ReviewForm = ({ formData, navigation }) => {
 
       <div className="w3-bar">
         <button
-          className="w3-button w3-blue w3-border w3-right"
+          className="w3-button w3-border w3-right"
           type="button"
           onClick={() => go('confirmation')}
         >

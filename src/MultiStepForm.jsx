@@ -8,12 +8,12 @@ import ReviewForm from './ReviewForm';
 import ConfirmationForm from './ConfirmationForm';
 
 const steps = [
-  { id: 'billing-address' },
-  { id: 'shipping-address' },
-  { id: 'shipping-method' },
-  { id: 'set-review' },
-  { id: 'review' },
-  { id: 'confirmation' },
+  { id: 'billing-address', Component: BillingAddressForm },
+  { id: 'shipping-address', Component: ShippingAddressForm },
+  { id: 'shipping-method', Component: ShippingMethodForm },
+  { id: 'set-review', Component: ReviewForm },
+  { id: 'review', Component: ReviewForm },
+  { id: 'confirmation', Component: ConfirmationForm },
 ];
 
 const defaultData = {
@@ -37,26 +37,12 @@ const defaultData = {
   shippingMethod: 'FREE',
 };
 
-const mapIdToComponent = {
-  'billing-address': BillingAddressForm,
-  'shipping-address': ShippingAddressForm,
-  'shipping-method': ShippingMethodForm,
-  'set-review': ReviewForm,
-  review: ReviewForm,
-  confirmation: ConfirmationForm,
-};
-
 const MultiStepForm = () => {
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({ initialStep: 0, steps });
-  const { id } = step;
-
+  const { Component } = step;
   const props = { formData, setForm, navigation };
 
-  const Component = mapIdToComponent[id];
-  if (!Component) {
-    throw new Error(`Invalid step id: "${id}"`);
-  }
   return <Component {...props} />;
 };
 

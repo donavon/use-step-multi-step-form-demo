@@ -1,6 +1,102 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #fff;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+body.darkmode {
+  background-color: #1a1919;
+  color: #999;
+}
+
+.darkmode .w3-button.w3-white {
+  background-color: #2196f3 !important;
+  border-color: transparent !important;
+  border-radius: 2px;
+}
+
 .app {
   max-width: 500px;
   margin: 16px auto;
+  position: relative;
+}
+
+.darkmode .app {
+  background-color: #232323;
+}
+
+.darkmode-toggle {
+  position: absolute;
+  right: 16px;
+  top: 20px;
+}
+.darkmode-toggle > button {
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  color: #ffe600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.darkmode .darkmode-toggle > button {
+  color: #999;
+}
+.darkmode-toggle > button:last-child {
+  color: #666;
+}
+.darkmode .darkmode-toggle > button:last-child {
+  color: #ffe600;
+}
+/* bab3fd */
+.darkmode-toggle > button:focus {
+  outline: none;
+}
+
+.toggle-control {
+  position: relative;
+  padding: 0 4px;
+}
+
+input[type='checkbox'].dmcheck {
+  width: 40px;
+  height: 10px;
+  background: #555;
+  position: relative;
+  border-radius: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  vertical-align: 2px;
+  outline: none;
+}
+input[type='checkbox'].dmcheck:focus-visible {
+  outline: solid 2px white;
+}
+input[type='checkbox'].dmcheck + label {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: absolute;
+  top: -1px;
+  left: 3px;
+  background: #fff;
+  opacity: 0.8;
+}
+
+input[type='checkbox'].dmcheck:checked + label {
+  left: 27px;
+}
+
+.pre {
+  border-radius: 2px;
 }
 
 h4 button {
@@ -36,6 +132,7 @@ h4 button {
   -moz-appearance: none;
   appearance: none;
   padding: 8px;
+  border-radius: 0;
 }
 .select-wrapper > .w3-select::-ms-expand {
   display: none;
@@ -45,13 +142,40 @@ h4 button {
   margin-top: 32px;
 }
 
-/* standardize: brave mobile uses these, chrome web doesn't set background color */
+.w3-select,
+.w3-input {
+  background-color: transparent;
+  xborder-top-left-radius: 5px;
+  xborder-top-right-radius: 5px;
+}
+
+.darkmode .w3-select,
+.darkmode .w3-input {
+  background-color: #121212;
+  color: #666;
+}
+.darkmode .w3-select:focus,
+.darkmode .w3-input:focus {
+  color: #dfdfdf;
+}
+
 .w3-select:disabled,
 .w3-input:disabled {
   color: #545454;
   background-color: #ebebe5;
 }
 
+.darkmode .w3-select:disabled,
+.darkmode .w3-input:disabled {
+  color: #000;
+  background-color: #666;
+}
+
 footer {
   min-height: 3px;
+}
+
+.darkmode .w3-blue {
+  background-color: #0072c4 !important;
+  color: #ddd !important;
 }
