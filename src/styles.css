@@ -26,6 +26,8 @@ h4 button {
 .select-wrapper::after {
   top: 10px;
   -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  transform: rotate(-180deg);
 }
 
 .select-wrapper > .w3-select {
