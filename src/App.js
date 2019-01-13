@@ -15,9 +15,7 @@ const App = () => (
         <MultiStepForm />
       </form>
 
-      <footer className="w3-container w3-blue">
-        <div style={{ height: 3 }} />
-      </footer>
+      <footer className="w3-container w3-blue" />
     </div>
   </AppContext.Provider>
 );

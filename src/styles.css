@@ -7,12 +7,36 @@ h4 button {
   margin-left: 10px;
 }
 
-.w3-select {
+.select-wrapper {
+  position: relative;
+}
+
+/* add up/down arrows for select */
+.select-wrapper::before,
+.select-wrapper::after {
+  content: '▼';
+  color: #666;
+  display: inline-block;
+  position: absolute;
+  right: 8px;
+  top: 19px;
+  pointer-events: none;
+  font-size: 0.5em;
+}
+.select-wrapper::after {
+  top: 10px;
+  -webkit-transform: rotate(-180deg);
+}
+
+.select-wrapper > .w3-select {
   background-color: transparent;
   -webkit-appearance: none; /* also removes arrows */
   -moz-appearance: none;
   appearance: none;
   padding: 8px;
+}
+.select-wrapper > .w3-select::-ms-expand {
+  display: none;
 }
 
 .w3-bar {
@@ -24,4 +48,8 @@ h4 button {
 .w3-input:disabled {
   color: #545454;
   background-color: #ebebe5;
+}
+
+footer {
+  min-height: 3px;
 }
