@@ -7,12 +7,12 @@ import useDarkMode from 'use-dark-mode';
 const DarkModeToggle = () => {
   const [isDarkMode, setDarkMode, clearDarkMode, toggleDarkMode] = useDarkMode(
     false,
-    { className: 'darkmode', element: document.body }
+    { className: 'dark-mode', element: document.body }
   );
 
   return (
     <>
-      <div className="darkmode-toggle">
+      <div className="dark-mode-toggle">
         <button type="button" onClick={clearDarkMode}>
           ☀
         </button>

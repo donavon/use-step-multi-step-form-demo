@@ -8,12 +8,12 @@ body {
   color: #333;
   transition: background-color 0.3s ease;
 }
-body.darkmode {
+body.dark-mode {
   background-color: #1a1919;
   color: #999;
 }
 
-.darkmode .w3-button.w3-white {
+.dark-mode .w3-button.w3-white {
   background-color: #2196f3 !important;
   border-color: transparent !important;
   border-radius: 2px;
@@ -25,16 +25,16 @@ body.darkmode {
   position: relative;
 }
 
-.darkmode .app {
+.dark-mode .app {
   background-color: #232323;
 }
 
-.darkmode-toggle {
+.dark-mode-toggle {
   position: absolute;
   right: 16px;
   top: 20px;
 }
-.darkmode-toggle > button {
+.dark-mode-toggle > button {
   font-size: 1.2em;
   background: none;
   border: none;
@@ -42,17 +42,17 @@ body.darkmode {
   cursor: pointer;
   transition: color 0.3s ease;
 }
-.darkmode .darkmode-toggle > button {
+.dark-mode .dark-mode-toggle > button {
   color: #999;
 }
-.darkmode-toggle > button:last-child {
+.dark-mode-toggle > button:last-child {
   color: #666;
 }
-.darkmode .darkmode-toggle > button:last-child {
+.dark-mode .dark-mode-toggle > button:last-child {
   color: #ffe600;
 }
 /* bab3fd */
-.darkmode-toggle > button:focus {
+.dark-mode-toggle > button:focus {
   outline: none;
 }
 
@@ -149,13 +149,13 @@ h4 button {
   xborder-top-right-radius: 5px;
 }
 
-.darkmode .w3-select,
-.darkmode .w3-input {
+.dark-mode .w3-select,
+.dark-mode .w3-input {
   background-color: #121212;
   color: #666;
 }
-.darkmode .w3-select:focus,
-.darkmode .w3-input:focus {
+.dark-mode .w3-select:focus,
+.dark-mode .w3-input:focus {
   color: #dfdfdf;
 }
 
@@ -165,8 +165,8 @@ h4 button {
   background-color: #ebebe5;
 }
 
-.darkmode .w3-select:disabled,
-.darkmode .w3-input:disabled {
+.dark-mode .w3-select:disabled,
+.dark-mode .w3-input:disabled {
   color: #000;
   background-color: #666;
 }
@@ -175,7 +175,7 @@ footer {
   min-height: 3px;
 }
 
-.darkmode .w3-blue {
+.dark-mode .w3-blue {
   background-color: #0072c4 !important;
   color: #ddd !important;
 }
