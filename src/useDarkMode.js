@@ -1,40 +1,58 @@
-import { useEffect } from 'react';
-import usePersistedState from './usePersistedState';
+import { useEffect, useCallback } from 'react';
+import usePersistedState from 'use-persisted-state';
 
+const preferDarkQuery = '(prefers-color-scheme: dark)';
 const usePersistedStateKey = 'darkMode';
 const usePersistedDarkModeState = usePersistedState.bind(
   null,
   usePersistedStateKey
 );
-const defaultClassName = 'dark-mode';
+const defaultClassNameDark = 'dark-mode';
+const defaultClassNameLight = 'light-mode';
 const defaultConfig = {
-  className: defaultClassName,
+  classNameDark: defaultClassNameDark,
+  classNameLight: defaultClassNameLight,
   element: document.body,
 };
 
-const setDOMDarkMode = (element, method, className) => {
+const setDOMClass = (element, method, className) => {
   element.classList[method](className);
 };
 
-const useDarkMode = (initialState, config = defaultConfig) => {
-  const [darkMode, setDarkMode] = usePersistedDarkModeState(initialState);
-  const toggleDarkMode = () => setDarkMode(current => !current);
-  const { element = document.body, className = defaultClassName } = config;
+const queryDarkModeMedia = usersInitialState => () => {
+  const mql = global.matchMedia(preferDarkQuery);
+  const supportsColorSchemeQuery = mql.media === preferDarkQuery;
+  return supportsColorSchemeQuery ? mql.matches : usersInitialState;
+};
+
+const useDarkMode = (initialValue = false, config = {}) => {
+  const [value, setDarkMode] = usePersistedDarkModeState(
+    queryDarkModeMedia(initialValue)
+  );
+  const { element, classNameDark, classNameLight } = {
+    ...defaultConfig,
+    ...config,
+  };
+
+  const defaultOnChange = val => {
+    setDOMClass(element, val ? 'add' : 'remove', classNameDark);
+    setDOMClass(element, !val ? 'add' : 'remove', classNameLight);
+  };
+  const onChange = config.onChange || defaultOnChange;
 
   useEffect(
     () => {
-      const method = darkMode ? 'add' : 'remove';
-      setDOMDarkMode(element, method, className);
+      onChange(value);
     },
-    [darkMode]
+    [value]
   );
 
-  return [
-    darkMode,
-    () => setDarkMode(true),
-    () => setDarkMode(false),
-    toggleDarkMode,
-  ];
+  return {
+    value,
+    enable: useCallback(() => setDarkMode(true)),
+    disable: useCallback(() => setDarkMode(false)),
+    toggle: useCallback(() => setDarkMode(current => !current)),
+  };
 };
 
 export default useDarkMode;

@@ -1,36 +1,84 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
-const keyPrefix = 'USE_PERSISTED_STATE';
+import createGlobalState from './createGlobalState';
 
-const serialize = value => JSON.stringify(value);
-const deserialize = json => JSON.parse(json);
+const useEventListener = (eventName, handler) => {
+  const savedHandler = useRef();
 
-const getLocalStorage = (provider, key, defaultValue) => {
-  const json = provider.getItem(`${keyPrefix}.${key}`);
-  return json === null ? defaultValue : deserialize(json);
-};
-
-const setLocalStorage = (provider, key, value) => {
-  provider.setItem(`${keyPrefix}.${key}`, serialize(value));
-};
-
-const usePersistedState = (
-  key,
-  initialState,
-  provider = global.localStorage
-) => {
-  const [state, setState] = useState(() =>
-    getLocalStorage(provider, key, initialState)
-  );
+  useEffect(() => {
+    savedHandler.current = handler;
+  });
 
   useEffect(
     () => {
-      setLocalStorage(provider, key, state);
-    },
-    [state]
-  );
+      const eventListener = () => savedHandler.current();
 
-  return [state, setState];
+      global.addEventListener(eventName, eventListener);
+      return () => {
+        global.removeEventListener(eventName, eventListener);
+      };
+    },
+    [eventName]
+  );
 };
 
-export default usePersistedState;
+const createStorage = provider => ({
+  get(key, defaultValue) {
+    const json = provider.getItem(key);
+    return json === null
+      ? typeof defaultValue === 'function'
+        ? defaultValue()
+        : defaultValue
+      : JSON.parse(json);
+  },
+  set(key, value) {
+    provider.setItem(key, JSON.stringify(value));
+  },
+});
+
+const createPersistedState = (key, provider = global.localStorage) => {
+  return initialState => {
+    const globalState = useRef(null);
+    const createStorageMemoized = useCallback(() => createStorage(provider), [
+      provider,
+    ]);
+    const { get, set } = createStorageMemoized();
+
+    const [state, setState] = useState(() => get(key, initialState));
+
+    // only called on mount/unmount
+    // subscribe to `storage` change events
+    useEventListener('storage', ({ key: k, newValue }) => {
+      const newState = JSON.parse(newValue);
+      if (k === key && state !== newState) {
+        setState(newState);
+      }
+    });
+
+    // only called on mount/unmount
+    useEffect(() => {
+      // register a listener that calls `setState` when another instance emits
+      globalState.current = createGlobalState(key, setState, state);
+
+      return () => {
+        globalState.current.deregister();
+      };
+    }, []);
+
+    // Only persist to storage if state changes.
+    useEffect(
+      () => {
+        // persist to localStorage
+        set(key, state);
+
+        // inform all of the other instances in this tab
+        globalState.current.emit(state);
+      },
+      [state]
+    );
+
+    return [state, setState];
+  };
+};
+
+export default createPersistedState;
